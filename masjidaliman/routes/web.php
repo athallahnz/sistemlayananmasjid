@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JamaahController;
+use App\Http\Controllers\JadwalsholatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +21,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin/login', 'AdminController@login')->name('admin.login');
+Route::post('/admin/login', 'AdminController@authenticate')->name('admin.authenticate');
+Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
+
+Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+
+
+Route::get('/home', [App\Http\Controllers\JamaahController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\JamaahController::class, 'create'])->name('home');
+Route::post('/', [App\Http\Controllers\JamaahController::class, 'store'])->name('home');
+
+Route::resource('jamaah', JamaahController::class);
+
+Route::post('/sholat/jadwal', [JadwalsholatController::class, 'getJadwalSholat'])->name('sholat.result');
+Route::get('/sholat/jadwal', [JadwalsholatController::class, 'showForm'])->name('sholat.form');

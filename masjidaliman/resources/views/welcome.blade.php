@@ -14,7 +14,7 @@
         </div>
     </div>
 </div>
-{{-- <div class="container-fluid"> --}}
+
 <div id="jadwalsholat" class="" style="background-color: #622200">
     <div class="container py-5 px-4 background-color text-white" style="background-color: #622200">
         <div class="row py-2 px-4 bg-transparent">
@@ -63,6 +63,46 @@
             </div>
         </div>
     </div>
+</div>
+<div class="container-sm mt-5">
+    <form action="{{ route('home') }}" method="POST">
+        @csrf
+        <div class="row justify-content-center">
+            <div class="p-5 bg-light rounded-3 border col-xl-6">
+                    <div class="mb-3 text-center">
+                        <h4>Siapkan Infaq terbaikmuuuu!</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-mb-3">
+                            <input class="form-control mb-3 @error('nama') is-invalid @enderror" type="text" name="nama" id="nama" value="{{ old('nama') }}" placeholder="Masukkan Nama">
+                                @error('nama')
+                                <div class="text-danger"><small>{{ $message }}</small></div>
+                                @enderror
+                            <input class="form-control mb-3 @error('nomor') is-invalid @enderror" type="text" name="nomor" id="nomor" value="{{ old('nomor') }}" placeholder="Masukkan Nomor">
+                                @error('nomor')
+                                <div class="text-danger"><small>{{ $message }}</small></div>
+                                @enderror
+                        </div>
+                            <div class="mb-3">
+                                <div class="col-md-12 mb-3">
+                                    <label for="infaq" class="form-label">Tujuan Infaq</label>
+                                    <select name="infaq" id="infaq" class="form-select">
+                                        @foreach ($infaqs as $Infaq)
+                                        <option value="{{ $Infaq->id }}" {{ old('Infaq') == $Infaq->id ? 'selected' : '' }}>{{ $Infaq->code.' - '.$Infaq->name }}</option>
+                                        @endforeach
+                                        </select>
+                                        @error('infaq')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                </div>
+                                <input class="form-control" type="file" id="formFile">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </form>
 </div>
 <div id="footer" class="">
     <div class="container py-5 px-4">
@@ -145,5 +185,5 @@
             </div>
         </div>
 </div>
-{{-- </div> --}}
+
 @endsection
