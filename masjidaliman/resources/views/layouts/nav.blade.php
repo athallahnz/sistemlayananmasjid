@@ -14,7 +14,7 @@
                     <a class="nav-link active" aria-current="page" href="{{ url('/home') }}">Home</a>
                 </li>
                 <li class="nav-item px-3">
-                    <a class="nav-link" href="#">Kajian</a>
+                    <a class="nav-link" target="_blank" href="{{ url('https://youtube.com/playlist?list=PLdZ1SL1lbj1x2BrrMcUoYEi6CEgBHlJ1Z&si=wPpabhLiJ130D3F2') }}">Kajian</a>
                 </li>
                 <li class="nav-item px-3">
                     <a class="nav-link" href="#">Kegiatan</a>
@@ -28,8 +28,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Sejarah</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn text-white" style="background-color: #622200">Card link</a>
-                                    <a href="#" class="btn text-white" style="background-color: #622200" >Another link</a>
+                                    <a href="#" class="btn text-white" style="background-color: #622200" >Pelajari Selengkapnya</a>
                                 </div>
                             </div>
                         </li>
@@ -38,8 +37,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Struktur Organisasi</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-success">Card link</a>
-                                    <a href="#" class="btn btn-success">Another link</a>
+                                    <a href="#" class="btn text-white" style="background-color: #622200" >Pelajari Selengkapnya</a>
                                 </div>
                             </div>
                         </li>

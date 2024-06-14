@@ -19,87 +19,110 @@
     <div class="container py-5 px-4 background-color text-white" style="background-color: #622200">
         <div class="row py-2 px-4 bg-transparent">
             <div class="col-4 card-header">
-                <h1 class="text-white">Jadwal Sholat</h1>
-                <h4 class=" mt-4 text-white"><i class="bi bi-geo-fill text-white"></i> Surabaya </h4>
-                <div class="card-footer text-white mt-4">
-                    2 Juni 2024
-                </div>
+                <h1 class="fw-bold text-white">Jadwal Sholat</h1>
+                <h5 class=" my-4 text-white"><i class="bi bi-geo-fill text-white"></i> Surabaya, {{ \Carbon\Carbon::now()->format('d F Y') }}</h5>
+                {{-- <div class="card-footer text-white mt-4">
+                    {{ \Carbon\Carbon::now()->format('d F Y') }}
+                </div> --}}
+                {{-- <form action="{{ route('welcome') }}" method="GET" class="mb-3">
+                    <div class="input-group mt-5">
+                        <input type="text" class="form-control mt-5" placeholder="Cari kotamu!" name="search_city" value="{{ $searchCity ?? '' }}">
+                        <button class="btn btn-outline-light mt-5" type="submit"><i class="bi bi-search"></i></button>
+                    </div>
+                </form> --}}
             </div>
             <div class="col bg-transparent">
                 <ul class="list-group bg-transparent">
-                    <li class="d-flex justify-content-between align-items-center bg-transparent m-3">
-                        Imsak
-                        <span class="badge bg-primary rounded-pill">14</span>
-                    </li>
-                    <li class="d-flex justify-content-between align-items-center bg-transparent m-3">
-                        Shubuh
-                        <span class="badge bg-primary rounded-pill">2</span>
-                    </li>
-                    <li class="d-flex justify-content-between align-items-center bg-transparent m-3">
-                        Terbit
-                        <span class="badge bg-primary rounded-pill">1</span>
-                    </li>
-                    <li class="d-flex justify-content-between align-items-center bg-transparent m-3">
-                        Dhuhur
-                        <span class="badge bg-primary rounded-pill">14</span>
-                    </li>
+                    @if(isset($jadwalDefault['data']['jadwal']))
+                        @php $jadwal = $jadwalDefault['data']['jadwal'][0]; @endphp
+                        <h4 class="d-flex justify-content-between align-items-center bg-transparent m-3">
+                            Imsak
+                            <span class="badge bg-secondary">{{ $jadwal['imsak'] }}</span>
+                        </h4>
+                        <h4 class="d-flex justify-content-between align-items-center bg-transparent m-3">
+                            Shubuh
+                            <span class="badge bg-secondary">{{ $jadwal['subuh'] }}</span>
+                        </h4>
+                        <h4 class="d-flex justify-content-between align-items-center bg-transparent m-3">
+                            Terbit
+                            <span class="badge bg-secondary">{{ $jadwal['terbit'] }}</span>
+                        </h4>
+                        <h4 class="d-flex justify-content-between align-items-center bg-transparent m-3">
+                            Dhuha
+                            <span class="badge bg-secondary">{{ $jadwal['dhuha'] }}</span>
+                        </h4>
+                    @else
+                        <p class="text-white">Data tidak tersedia untuk Surabaya.</p>
+                    @endif
                 </ul>
             </div>
             <div class="col bg-transparent">
                 <ul class="list-group bg-transparent">
-                    <li class="d-flex justify-content-between align-items-center bg-transparent m-3">
-                        Ashar
-                        <span class="badge bg-primary rounded-pill">2</span>
-                    </li>
-                    <li class="d-flex justify-content-between align-items-center bg-transparent m-3">
-                        Maghrib
-                        <span class="badge bg-primary rounded-pill">1</span>
-                    </li>
-                    <li class="d-flex justify-content-between align-items-center bg-transparent m-3">
-                        Isya'
-                        <span class="badge bg-primary rounded-pill">1</span>
-                    </li>
+                    @if(isset($jadwalDefault['data']['jadwal']))
+                        <h4 class="d-flex justify-content-between align-items-center bg-transparent m-3">
+                            Dzuhur
+                            <span class="badge bg-secondary">{{ $jadwal['dzuhur'] }}</span>
+                        </h4>
+                        <h4 class="d-flex justify-content-between align-items-center bg-transparent m-3">
+                            Ashar
+                            <span class="badge bg-secondary">{{ $jadwal['ashar'] }}</span>
+                        </h4>
+                        <h4 class="d-flex justify-content-between align-items-center bg-transparent m-3">
+                            Maghrib
+                            <span class="badge bg-secondary">{{ $jadwal['maghrib'] }}</span>
+                        </h4>
+                        <h4 class="d-flex justify-content-between align-items-center bg-transparent m-3">
+                            Isya'
+                            <span class="badge bg-secondary">{{ $jadwal['isya'] }}</span>
+                        </h4>
+                    @else
+                        <p class="text-white">Data tidak tersedia untuk Surabaya.</p>
+                    @endif
                 </ul>
             </div>
         </div>
     </div>
 </div>
 <div class="container-sm mt-5">
-    <form action="{{ route('home') }}" method="POST">
+    <form action="{{ route('home.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row justify-content-center">
             <div class="p-5 bg-light rounded-3 border col-xl-6">
-                    <div class="mb-3 text-center">
-                        <h4>Siapkan Infaq terbaikmuuuu!</h4>
+                <div class="mb-4 text-center">
+                    <h4 class="fs-2 fw-bold">Siapkan Infaq Terbaikmu!</h4>
+                </div>
+                <div class="row">
+                    <div class="col-mb-3">
+                        <input class="form-control @error('nama') is-invalid @enderror" type="text" name="nama" id="nama" value="{{ old('nama') }}" placeholder="Masukkan Nama">
+                        @error('nama')
+                        <div class="text-danger"><small>{{ $message }}</small></div>
+                        @enderror
+                        <input class="form-control mt-3 @error('nomor') is-invalid @enderror" type="text" name="nomor" id="nomor" value="{{ old('nomor') }}" placeholder="Masukkan No. Tlp">
+                        @error('nomor')
+                        <div class="text-danger"><small>{{ $message }}</small></div>
+                        @enderror
                     </div>
-                    <div class="row">
-                        <div class="col-mb-3">
-                            <input class="form-control mb-3 @error('nama') is-invalid @enderror" type="text" name="nama" id="nama" value="{{ old('nama') }}" placeholder="Masukkan Nama">
-                                @error('nama')
-                                <div class="text-danger"><small>{{ $message }}</small></div>
-                                @enderror
-                            <input class="form-control mb-3 @error('nomor') is-invalid @enderror" type="text" name="nomor" id="nomor" value="{{ old('nomor') }}" placeholder="Masukkan Nomor">
-                                @error('nomor')
-                                <div class="text-danger"><small>{{ $message }}</small></div>
-                                @enderror
+                    <div class="mt-3">
+                        <div class="col-md-12 mb-3">
+                            <label for="infaq" class="form-label">Tentukan tujuan Infaqmu</label>
+                            <select name="infaq" id="infaq" class="form-select mb-3">
+                                @foreach ($infaqs as $Infaq)
+                                <option value="{{ $Infaq->id }}" {{ old('infaq') == $Infaq->id ? 'selected' : '' }}>{{ $Infaq->code.' - '.$Infaq->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('infaq')
+                            <div class="text-danger"><small>{{ $message }}</small></div>
+                            @enderror
+                            <label for="infaq" class="form-label">Upload bukti transfer</label>
+                            <input class="form-control" type="file" id="formFile" name="file">
+                            @error('file')
+                            <div class="text-danger"><small>{{ $message }}</small></div>
+                            @enderror
                         </div>
-                            <div class="mb-3">
-                                <div class="col-md-12 mb-3">
-                                    <label for="infaq" class="form-label">Tujuan Infaq</label>
-                                    <select name="infaq" id="infaq" class="form-select">
-                                        @foreach ($infaqs as $Infaq)
-                                        <option value="{{ $Infaq->id }}" {{ old('Infaq') == $Infaq->id ? 'selected' : '' }}>{{ $Infaq->code.' - '.$Infaq->name }}</option>
-                                        @endforeach
-                                        </select>
-                                        @error('infaq')
-                                        <div class="text-danger"><small>{{ $message }}</small></div>
-                                        @enderror
-                                </div>
-                                <input class="form-control" type="file" id="formFile">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-outline-light" style="background-color: #622200">Submit</button>
                     </div>
+                </div>
             </div>
         </div>
     </form>
@@ -177,13 +200,13 @@
         </div>
         </div>
         </div>
-        <div id="copyright" class="py-3" style="background-color: #622200">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-xs-12 text-center" style="color: white;">Masjid Al Iman Sutorejo Indah Surabaya | ©2024</div>
-                </div>
-            </div>
+</div>
+<div id="copyright" class="container-fluid py-3" style="background-color: #622200">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12 text-center" style="color: white;">Masjid Al Iman Sutorejo Indah Surabaya | ©2024</div>
         </div>
+    </div>
 </div>
 
 @endsection
