@@ -28,7 +28,7 @@
                 <div class="row justify-content-center mt-4 mb-5">
                     <div class="p-4 bg-light rounded-3 border col-xl-6">
                         <div class="row">
-                            <div class="col-mb-3 mt-2">
+                            <div class="col-mb-3">
                                 <input id="name" type="text" class="form-control mb-3 @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Masukkan Nama">
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">

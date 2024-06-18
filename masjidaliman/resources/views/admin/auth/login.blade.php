@@ -23,16 +23,16 @@
                 <h2 class="fw-bold text-center">Selamat Datang di</h2>
                 <h5 class="fw-lighter text-center">Masjid Al Iman Surabaya</h5>
             </div>
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('admin.login') }}">
                 @csrf
                 <div class="row justify-content-center mt-4 mb-5">
                     <div class="p-4 bg-light rounded-3 border col-9">
                         <div class="row">
-                            <div class="col mb-5">
+                            <div class="col">
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <input id="email" type="email"
-                                    class="form-control my-3   @error('email') is-invalid @enderror" name="email"
+                                    class="form-control my-3 @error('email') is-invalid @enderror" name="email"
                                     value="{{ old('email') }}" required autocomplete="email"
                                     placeholder="Enter Your Email" autofocus>
                                     @error('email')
@@ -74,7 +74,7 @@
                                         </button>
                                     </div>
                                     <div class="row">
-                                        <div class="text-center mt-3">
+                                        <div class="text-center mt-3 mb-3">
                                             <p >Jamaah Baru di Al Iman? <a href="{{ route('register') }}">Daftar Jamaah</a></p>
                                         </div>
                                     </div>

@@ -27,7 +27,7 @@
                             <div class="card mb-3 mt-1" style="width: 18rem;">
                                 <div class="card-body">
                                     <h5 class="card-title">Sejarah</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <p class="card-text">Pembangunan yang berkesinambungan mengharuskan adanya suatu perencanaan jangka panjang. Diharapkan dengan adanya perencanaan ini, arah pembangunan yang diinginkan dapat dicapai secara bertahap.</p>
                                     <a href="#" class="btn text-white" style="background-color: #622200" >Pelajari Selengkapnya</a>
                                 </div>
                             </div>
@@ -36,8 +36,8 @@
                             <div class="card mb-1" style="width: 18rem;">
                                 <div class="card-body">
                                     <h5 class="card-title">Struktur Organisasi</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn text-white" style="background-color: #622200" >Pelajari Selengkapnya</a>
+                                    <p class="card-text"></p>
+                                    <a target="_blank" href="https://drive.google.com/file/d/1mlKAQmGScW1LiuNoznt4NKvKXQBRfe-a/view?usp=sharing" class="btn text-white" style="background-color: #622200" >Lihat lebih detail</a>
                                 </div>
                             </div>
                         </li>

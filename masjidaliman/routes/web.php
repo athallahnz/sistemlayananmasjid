@@ -26,10 +26,27 @@ Route::get('/admin/login', 'AdminController@login')->name('admin.login');
 Route::post('/admin/login', 'AdminController@authenticate')->name('admin.authenticate');
 Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 
-Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
+
+require __DIR__.'/adminauth.php';
+
+Route::get('/dashboard', function(){
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('/admin', function(){
+    return view('admin.index');
+})->middleware(['auth', 'role:admin'])->name('admin.index');
+
+Route::get('/home', [App\Http\Controllers\JamaahController::class, 'index'])->name('home')->middleware('auth');
+
+// Route::get('/home', function () {
+//     return view('home');
+// })->middleware('auth');
 
 
-Route::get('/home', [App\Http\Controllers\JamaahController::class, 'index'])->name('home')->middleware('auth');;
 // Route untuk menyimpan data dari form
 Route::post('/home', [JamaahController::class, 'store'])->name('home.store');
 
