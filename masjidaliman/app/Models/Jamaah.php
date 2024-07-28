@@ -16,4 +16,9 @@ class Jamaah extends Model
     {
     return $this->belongsTo(User::class);
     }
+    public function jamaahs()
+    {
+    return $this->hasMany(Jamaah::class);
+    }
+    protected $fillable = ['nama', 'nomor', 'infaq_id', 'file_path', 'user_id' ];
 }

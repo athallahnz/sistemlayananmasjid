@@ -2,13 +2,14 @@
 
 @section('content')
 <div class="container mt-5">
-    <h2 class="fw-bold text-center mb-4">Daftar Infaq Jamaah</h2>
+    <h2 class="fw-bold text-center mb-4">Daftar Infaq  {{ Auth::user()->name }}</h2>
     @if($jamaahs->isEmpty())
         <p class="text-center">Tidak ada data infaq untuk pengguna ini.</p>
     @else
         <table class="table table-bordered table-hover table-striped mb-0 bg-white">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nama</th>
                     <th>Nomor</th>
                     <th>Infaq</th>
@@ -18,6 +19,8 @@
             <tbody>
                 @foreach($jamaahs as $jamaah)
                 <tr>
+                <tr>
+                    <td>{{ $jamaah->user_id }}</td>
                     <td>{{ $jamaah->nama }}</td>
                     <td>{{ $jamaah->nomor }}</td>
                     <td>{{ $jamaah->infaq_name }}</td>

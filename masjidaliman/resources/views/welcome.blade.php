@@ -94,6 +94,7 @@
                 <div class="row">
                     <div class="col-mb-3">
                         <input class="form-control @error('nama') is-invalid @enderror" type="text" name="nama" id="nama" value="{{ Auth::check() ? Auth::user()->name : '' }}" placeholder="Masukkan Nama">
+                        <input class="form-control @error('user_id') is-invalid @enderror" type="hidden" name="user_id" id="user_id" value="{{ Auth::check() ? Auth::id() : ''}}" placeholder="Masukkan Nama">
                         @error('nama')
                         <div class="text-danger"><small>{{ $message }}</small></div>
                         @enderror
