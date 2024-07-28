@@ -11,7 +11,11 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item px-3">
+                    @if(Auth::check() && Auth::user()->hasRole ('admin'))
                     <a class="nav-link active" aria-current="page" href="{{ url('/home') }}">Home</a>
+                    @else
+                    <a class="nav-link active" aria-current="page" href="{{ url('/homeuser') }}">Home</a>
+                    @endif
                 </li>
                 <li class="nav-item px-3">
                     <a class="nav-link" target="_blank" href="{{ url('https://youtube.com/playlist?list=PLdZ1SL1lbj1x2BrrMcUoYEi6CEgBHlJ1Z&si=wPpabhLiJ130D3F2') }}">Kajian</a>

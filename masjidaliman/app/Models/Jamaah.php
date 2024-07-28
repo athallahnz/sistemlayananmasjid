@@ -12,4 +12,8 @@ class Jamaah extends Model
     {
     return $this->belongsTo(Infaq::class);
     }
+    public function user()
+    {
+    return $this->belongsTo(User::class);
+    }
 }

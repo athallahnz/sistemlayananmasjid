@@ -21,7 +21,7 @@
                 <td>{{ $jamaah->infaq_name }}</td>
                 <td>
                     @if ($jamaah->file_path)
-                        <a href="{{ asset('storage/' . $jamaah->file_path) }}" target="_blank">Lihat Bukti</a>
+                        <a href="{{ asset('storage/' . $jamaah->file_path) }}" {{--target="_blank"--}} >Lihat Bukti</a>
                     @else
                         Tidak ada bukti
                     @endif
