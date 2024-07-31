@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Jamaah;
 use App\Models\Infaq;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -90,7 +91,9 @@ class JamaahController extends Controller
         }
 
         // INSERT QUERY
+        $userId = Auth::id();
         DB::table('jamaahs')->insert([
+            'user_id'=> $request->$userId,
             'nama' => $request->nama,
             'nomor' => $request->nomor,
             'infaq_id' => $request->infaq,

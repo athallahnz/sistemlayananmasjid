@@ -18,7 +18,11 @@
                     @endif
                 </li>
                 <li class="nav-item px-3">
-                    <a class="nav-link" target="_blank" href="{{ url('https://youtube.com/playlist?list=PLdZ1SL1lbj1x2BrrMcUoYEi6CEgBHlJ1Z&si=wPpabhLiJ130D3F2') }}">Kajian</a>
+                    @if(Auth::check() && Auth::user()->hasRole ('admin'))
+                    <a class="nav-link" target="" href="{{ url('/kajians') }}">Kajian</a>
+                    @else
+                    <a class="nav-link active" aria-current="page" href="{{ url('user/kajians') }}">Kajian</a>
+                    @endif
                 </li>
                 <li class="nav-item px-3">
                     <a class="nav-link" href="#">Kegiatan</a>

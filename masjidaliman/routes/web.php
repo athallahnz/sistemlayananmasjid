@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JamaahController;
 use App\Http\Controllers\JadwalsholatController;
+use App\Http\Controllers\HomeuserController;
+use App\Http\Controllers\KajianController;
+use App\Http\Controllers\UserKajianController;
+use App\Http\Controllers\FeedbackController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +22,7 @@ use App\Http\Controllers\JadwalsholatController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->name('landing');
 });
 
 Auth::routes();
@@ -47,9 +52,13 @@ Route::get('/home', [App\Http\Controllers\JamaahController::class, 'index'])->na
 //Route Home User
 Route::get('/homeuser', [App\Http\Controllers\HomeuserController::class, 'index'])->name('homeuser')->middleware('role:user');
 Route::post('/homeuser', [HomeuserController::class, 'store'])->name('homeuser.store');
+//bismillah
+Route::resource('homeuser', HomeuserController::class)->middleware('auth');
+Route::post('/home/store', [HomeuserController::class, 'store' ])->name('home.store');
+
 
 // Route untuk menyimpan data dari form
-Route::post('/home', [JamaahController::class, 'store'])->name('home.store');
+// Route::post('/home', [JamaahController::class, 'store'])->name('home.store');
 
 Route::get('/', [App\Http\Controllers\JamaahController::class, 'create'])->name('home')->middleware(['auth']);
 Route::post('/', [App\Http\Controllers\JamaahController::class, 'store'])->name('home');
@@ -68,3 +77,14 @@ Route::get('/welcome', [App\Http\Controllers\JadwalsholatController::class, 'sho
 
 Route::post('/sholat/jadwal', [JadwalsholatController::class, 'getJadwalSholat'])->name('sholat.result');
 Route::get('/sholat/jadwal', [JadwalsholatController::class, 'showForm'])->name('sholat.form');
+
+//Route Kajian
+Route::resource('kajians', KajianController::class);
+
+//Route User Kajian
+Route::get('user/kajians', [UserKajianController::class, 'index'])->name('user.kajians.index');
+Route::get('user/kajians/{kajian}', [UserKajianController::class, 'show'])->name('user.kajians.show');
+
+//Route Feedback
+Route::get('/welcome', [FeedbackController::class, 'index'])->name('feedback.index');
+Route::post('/welcome', [FeedbackController::class, 'send'])->name('feedback.send');

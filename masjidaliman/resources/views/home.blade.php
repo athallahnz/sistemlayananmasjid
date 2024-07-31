@@ -6,6 +6,7 @@
     <table class="table table-bordered table-hover table-striped mb-0 bg-white">
         <thead>
             <tr>
+                {{-- <th>ID</th> --}}
                 <th>Nama</th>
                 <th>No.Tlp</th>
                 <th>Tujuan</th>
@@ -16,6 +17,7 @@
         <tbody>
             @foreach ($jamaahs as $jamaah)
             <tr>
+                {{-- <td>{{ $jamaah->user_id }}</td> --}}
                 <td>{{ $jamaah->nama }}</td>
                 <td>{{ $jamaah->nomor }}</td>
                 <td>{{ $jamaah->infaq_name }}</td>

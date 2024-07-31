@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
@@ -83,7 +84,53 @@
         </div>
     </div>
 </div>
-<div class="container-sm mt-5">
+
+<div id="divisioncard" class="container my-5">
+    <div class="row">
+        <div class="col-md-3">
+            <a href="https://example.com/masjid" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="card division-card">
+                    <div style="width: 70px; height: 70px; background-color: #622200; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 20px;">
+                        <img src={{ Vite::asset('resources/images/masjid.svg')}} style="color: #fff; width: 43px; height: 43px;"></i>
+                    </div>
+                    <h5 class="card-title">Ibadah & Dakwah</h5>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="https://example.com/pendidikan" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="card division-card">
+                    <div style="width: 70px; height: 70px; background-color: #622200; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 20px;">
+                        <i class="bi bi-mortarboard" style="color: #fff; font-size: 30px;"></i>
+                    </div>
+                    <h5 class="card-title">Pendidikan</h5>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="https://example.com/sosial" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="card division-card">
+                    <div style="width: 70px; height: 70px; background-color: #622200; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 20px;">
+                        <i class="bi bi-people" style="color: #fff; font-size: 30px;"></i>
+                    </div>
+                    <h5 class="card-title">Sosial</h5>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="https://example.com/usaha" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="card division-card">
+                    <div style="width: 70px; height: 70px; background-color: #622200; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 20px;">
+                        <i class="bi bi-bank" style="color: #fff; font-size: 30px;"></i>
+                    </div>
+                    <h5 class="card-title">Usaha</h5>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="infaq" class="container-sm mt-5">
     <form action="{{ route('home.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row justify-content-center">
@@ -128,6 +175,37 @@
         </div>
     </form>
 </div>
+
+<div id="feedback" class="container mt-5">
+    <h2>Layanan Kritik & Saran</h2>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> Ada beberapa masalah dengan input Anda.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form action="{{ route('feedback.send') }}" method="POST">
+        @csrf
+        <div class="mb-3">
+            {{-- <label for="name" class="form-label">Nama:</label> --}}
+            <input type="text" name="name" class="form-control" value="{{ Auth::check() ? Auth::user()->name : '' }}" placeholder="Nama" required>
+        </div>
+        <div class="mb-3">
+            {{-- <label for="email" class="form-label">Email:</label> --}}
+            <input type="email" name="email" class="form-control" placeholder="Masukkan E-mail" required>
+        </div>
+        <div class="mb-3">
+            {{-- <label for="message" class="form-label">Pesan:</label> --}}
+            <textarea name="message" class="form-control" rows="5" placeholder="Sampaikan saran & pesan untuk Kami." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success"><i class="bi bi-whatsapp"></i> Kirim Saran & Masukan</button>
+    </form>
+</div>
+
 <div id="footer" class="">
     <div class="container py-5 px-4">
         <div class="row py-2 px-4">
@@ -202,6 +280,7 @@
         </div>
         </div>
 </div>
+
 <div id="copyright" class="container-fluid py-3" style="background-color: #622200">
     <div class="container-fluid">
         <div class="row">
