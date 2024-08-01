@@ -30,7 +30,7 @@
                         <div class="row">
                             <div class="col mb-5">
                                 <form method="POST" action="{{ route('login') }}">
-                                    @csrf
+                                    <input type="hidden" name="_token" value="{{ csrf_token()}}">
                                     <input id="email" type="email"
                                     class="form-control my-3   @error('email') is-invalid @enderror" name="email"
                                     value="{{ old('email') }}" required autocomplete="email"
